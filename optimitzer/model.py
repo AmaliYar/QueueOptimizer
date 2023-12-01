@@ -55,6 +55,7 @@ class Bin:
         self.dimensions = V
         self.EMSs = [[np.array((0, 0, 0)), np.array(V)]]
         self.load_items = []
+        self.max_time = 0
 
         if verbose:
             print('Init EMSs:',self.EMSs)
@@ -126,6 +127,8 @@ class Bin:
 
                     if isValid:
                         self.EMSs.append(new_EMS)
+                        if self.max_time < new_EMS[0][0]:
+                            self.max_time = new_EMS[0][0]
                         if verbose:
                             print('-> Success\nAdd new EMS:', list(map(tuple, new_EMS)))
 
@@ -397,7 +400,7 @@ class PlacementProcedure():
 
 
 class BRKGA():
-    def __init__(self, inputs, num_generations = 200, num_individuals=120, num_elites = 12, num_mutants = 18, eliteCProb = 0.7, multiProcess = False):
+    def __init__(self, inputs, num_generations = 20, num_individuals=1200, num_elites = 50, num_mutants = 0, eliteCProb = 0.7, multiProcess = False):
         # Setting
         self.multiProcess = multiProcess
         # Input

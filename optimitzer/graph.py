@@ -84,7 +84,7 @@ def find_prev_box(current_box: box.Box, added_boxes: list[box.Box]) -> list:
     for prev in added_boxes:
         if current_box.check_crossing(prev, 0):
             prevs.append(prev.id)
-    print(prevs, current_box.id)
+    # print(prevs, current_box.id)
     return prevs
 
 

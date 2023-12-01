@@ -21,7 +21,7 @@ class plot_3D:
         self.alpha = alpha
         self.V = V
         self.ax.set_xlim(0, V[1])
-        self.ax.set_ylim(V[0] ,0)
+        self.ax.set_ylim(V[0], 0)
         self.ax.set_zlim(0, V[2])
         self.ax.set_xlabel('Y axis')
         self.ax.set_ylabel('X axis')
@@ -72,7 +72,7 @@ class plot_3D:
                                                                 'color': color})], ignore_index=True)
         self.boxes_num += 1
     
-    def findOverlapping(self, verbose = True):
+    def findOverlapping(self, verbose=True):
         isOverlapped = False
         for A, B in combinations(range(self.boxes_num), 2):
             if self.intersection(A, B):
@@ -115,8 +115,8 @@ def draw_3D_plots(decoder, V):
         container = plot_3D(V=V[i])
         for box in decoder.Bins[i].load_items:
             container.add_box(box[0], box[1], mode = 'EMS')
-        print('Container', i, ':')
-        container.findOverlapping()
+        # print('Container', i, ':')
+        container.findOverlapping(verbose=False)
         container.show()
 
 
